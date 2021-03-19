@@ -31,6 +31,7 @@ public class Jeu {
             if(q.isGoodAnswer(reponses.get(answer))) {
                 System.out.println("WESH T BO");
             }
+            
 
         }
 
