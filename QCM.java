@@ -1,7 +1,5 @@
 package fr.vinet.qcm;
 
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class QCM {
@@ -16,6 +14,9 @@ public class QCM {
     }
 
 
+    public ArrayList<Question> getQuestions() {
+        return liste;
+    }
 
 
 		

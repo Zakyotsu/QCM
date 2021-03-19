@@ -38,6 +38,7 @@ public class DAO {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		questions.remove(0);
 		return questions;
 	}
 }
