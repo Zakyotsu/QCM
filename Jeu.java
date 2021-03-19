@@ -6,7 +6,7 @@ public class Jeu {
         DAO dao = new DAO();
 
         for(Question q : dao.getQuestions()) {
-            System.out.println(q.getQuestion());
+            System.out.println(q.getAnswer());
         }
     }
 
