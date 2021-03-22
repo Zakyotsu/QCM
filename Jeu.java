@@ -1,17 +1,16 @@
 package fr.vinet.qcm;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import javax.swing.*;
 
 public class Jeu {
 
     public static void main(String[] args) {
+        //METHODE SCANNER
+        /*
         Scanner s = new Scanner(System.in);
 
-        for(Question q : new QCM().getQuestions()) {
+        for(Question q : new DAO().getQuestions()) {
             String themeLine = q.getTheme();
-            String[] theme = themeLine.split("-");
 
             System.out.println("Thème " + q.getTheme());
             System.out.println("Question: " + q.getQuestion());
@@ -31,11 +30,11 @@ public class Jeu {
             if(q.isGoodAnswer(reponses.get(answer))) {
                 System.out.println("WESH T BO");
             }
-            
-
-        }
 
 
+        }*/
+
+        //METHODE JFRAME
+        new QCM();
     }
-
 }
