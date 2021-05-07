@@ -1,8 +1,6 @@
 package fr.vinet.qcm;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,8 +15,11 @@ public class QCM extends JFrame {
     private ArrayList<JRadioButton> radioButtons;
     private int score;
 
+    /**
+     * Generates JFrame element and shows it
+     */
     public QCM() {
-        questions = new DAO().getQuestions();
+        questions = DAO.getQuestions();
         radioButtons = new ArrayList<>();
         currentQuestion = 0;
         score = 0;
@@ -43,25 +44,23 @@ public class QCM extends JFrame {
         bg = new ButtonGroup();
 
 
-        btnValider.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Question q = questions.get(currentQuestion);
-                String userAnswer = "";
-                for(JRadioButton jrb : radioButtons) {
-                    if(jrb.isSelected()) userAnswer = jrb.getText();
-                }
-                if(userAnswer.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Sélectionnez au moins une proposition.", "Erreur", JOptionPane.NO_OPTION);
-                    return;
-                }
-
-                if(q.isGoodAnswer(userAnswer)) {
-                    JOptionPane.showMessageDialog(null, "Bonne réponse !", "Info", JOptionPane.NO_OPTION);
-                    score++;
-                } else JOptionPane.showMessageDialog(null, "Dommage... Mauvaise réponse :(", "Info", JOptionPane.NO_OPTION);
-
-                updateUI(++currentQuestion);
+        btnValider.addActionListener(e -> {
+            Question q = questions.get(currentQuestion);
+            String userAnswer = "";
+            for(JRadioButton jrb : radioButtons) {
+                if(jrb.isSelected()) userAnswer = jrb.getText();
             }
+            if(userAnswer.equals("")) {
+                JOptionPane.showMessageDialog(null, "Sélectionnez au moins une proposition.", "Erreur", JOptionPane.NO_OPTION);
+                return;
+            }
+
+            if(q.isGoodAnswer(userAnswer)) {
+                JOptionPane.showMessageDialog(null, "Bonne réponse !", "Info", JOptionPane.NO_OPTION);
+                score++;
+            } else JOptionPane.showMessageDialog(null, "Dommage... Mauvaise réponse :(", "Info", JOptionPane.NO_OPTION);
+
+            updateUI(++currentQuestion);
         });
 
 
@@ -104,6 +103,10 @@ public class QCM extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Updates the UI
+     * @param questionID ID of question
+     */
     public void updateUI(int questionID) {
         Question q = questions.get(questionID);
         String[] leurres = q.getLeurres();
